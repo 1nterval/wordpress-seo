@@ -342,8 +342,12 @@ if ( ! class_exists( 'WPSEO_Twitter' ) ) {
 				}
 			}
 
-			if ( count( $this->shown_images ) == 0 && $this->options['og_default_image'] !== '' ) {
-				$this->image_output( $this->options['og_default_image'] );
+			if ( count( $this->shown_images ) == 0 ) {
+				if ( is_front_page() && $this->options['og_frontpage_image'] !== '' ) {
+					$this->image_output( $this->options['og_frontpage_image'] );
+				} else if ( $this->options['og_default_image'] !== '' ) {
+					$this->image_output( $this->options['og_default_image'] );
+				}
 			}
 		}
 
