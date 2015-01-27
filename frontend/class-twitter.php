@@ -340,6 +340,14 @@ if ( ! class_exists( 'WPSEO_Twitter' ) ) {
 						}
 					}
 				}
+
+				if ( is_attachment() && wp_attachment_is_image($post->ID) ) {
+					$attached_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters( 'wpseo_twitter_image_size', 'full' ) );
+
+					if ( $attached_img ) {
+						$this->image_output( $attached_img[0] );
+					}
+				}
 			}
 
 			if ( count( $this->shown_images ) == 0 ) {
